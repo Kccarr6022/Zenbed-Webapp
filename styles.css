@@ -5,8 +5,8 @@
   background-color: black;
 }
 .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 0.1px solid rgba(0, 0, 0, 0.8);
+  background-color: rgb(255, 255, 255);
+  border: 0.1px solid rgba(0, 0, 0, 1);
   padding: 15px;
   font-size: 10px;
   text-align: center;
@@ -14,10 +14,11 @@
 }
 
 .grid-item-border {
+    border: 0.1px solid rgba(0, 0, 0, 1);
   padding: 15px;
   font-size: 10px;
   text-align: center;
   color: black;
-  border: 0.1px solid rgb(124, 124, 253);
-  background-color: rgb(124, 124, 253);
+  border: 0.1px solid rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
 }
