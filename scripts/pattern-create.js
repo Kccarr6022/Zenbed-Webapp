@@ -1,12 +1,16 @@
-const btn = document.getElementById("div");
+const elements = document.getElementById("list-of-elements");
 
-let index = 0;
+window.addEventListener("keydown", checkKeyPress, false);
 
-const colors = ["salmon", "green", "blue", "purple"];
+function checkKeyPress(key) {
+  if (key.keyCode == "13") {
+    elements.textContent += ",";
+}
+}
 
-btn.addEventListener("click", function onClick() {
-  btn.style.backgroundColor = colors[index];
-  btn.style.color = "white";
 
-  index = index >= colors.length - 1 ? 0 : index + 1;
-});
+function theFunction(x) {// when locatio is clicked
+
+  x.style.background = "#000000";
+  elements.textContent += " " + x.textContent;
+}
