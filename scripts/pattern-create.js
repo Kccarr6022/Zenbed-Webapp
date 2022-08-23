@@ -1,16 +1,14 @@
 const elements = document.getElementById("list-of-elements");
 const colors = [
-  "#00308F",
-  "#004F98",
-  "#6CA0DC",
-  "#4682B4",
-  "#4B9CD3",
-  "#00308F",
-  "#004F98",
-  "#6CA0DC",
-  "#4682B4",
-  "#4B9CD3",
+  "#ff0000",
+  "#FF7F00",
+  "#FFFF00",
+  "#00FF00",
+  "#0000FF",
+  "#4B0082",
+  "#9400D3",
 ];
+
 let index = 0;
 
 window.addEventListener("keydown", checkKeyPress, false);
@@ -23,8 +21,8 @@ function checkKeyPress(key) {
 }
 
 function theFunction(x) {
-  // when locatio is clicked
-
-  x.style.background = colors[index];
+  // Function for when square is clicked
+  x.style.background = colors[ index % colors.length];
   elements.textContent += " " + x.textContent;
+  elements.textContent += str(x.style.background);
 }
