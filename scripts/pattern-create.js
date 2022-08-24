@@ -1,4 +1,3 @@
-const elements = document.getElementById("list-of-elements");
 const colors = [
   "#ff0000",
   "#FF7F00",
@@ -9,20 +8,23 @@ const colors = [
   "#9400D3",
 ];
 
+let list = document.getElementById("list-of-elements");
+let entry = document.createElement("li");
 let index = 0;
 
 window.addEventListener("keydown", checkKeyPress, false);
 
-function checkKeyPress(key) {
-  if (key.keyCode == "13") {
-    elements.textContent += ",";
-    index++;
-  }
-}
-
 function theFunction(x) {
   // Function for when square is clicked
-  x.style.background = colors[ index % colors.length];
-  elements.textContent += " " + x.textContent;
-  elements.textContent += str(x.style.background);
+  x.style.background = colors[index % colors.length];
+
+  entry.appendChild(document.createTextNode(x.textContent + " "));
+}
+
+function checkKeyPress(key) {
+  if (key.keyCode == "13" || key.keyCode == "16") {
+    list.appendChild(entry);
+    entry = document.createElement("li");
+    index++;
+  }
 }
