@@ -11,6 +11,7 @@ const colors = [
 let list = document.getElementById("list-of-elements");
 let entry = document.createElement("li");
 let index = 0;
+list.appendChild(entry);
 
 window.addEventListener("keydown", checkKeyPress, false);
 
@@ -23,8 +24,8 @@ function theFunction(x) {
 
 function checkKeyPress(key) {
   if (key.keyCode == "13" || key.keyCode == "16") {
-    list.appendChild(entry);
     entry = document.createElement("li");
+    list.appendChild(entry);
     index++;
   }
 }
