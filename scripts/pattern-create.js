@@ -8,24 +8,31 @@ const colors = [
   "#9400D3",
 ];
 
-let list = document.getElementById("list-of-elements");
-let entry = document.createElement("li");
-let index = 0;
-list.appendChild(entry);
+let elementshtml = document.getElementById("list-of-elements");
+let sequencehtml = document.getElementById("sequence");
+let elements = document.createElement("li");
+let elementnumber = 0;
+let sequence = "";
+elementshtml.appendChild(elements);
 
 window.addEventListener("keydown", checkKeyPress, false);
 
 function theFunction(x) {
   // Function for when square is clicked
-  x.style.background = colors[index % colors.length];
-
-  entry.appendChild(document.createTextNode(x.textContent + " "));
+  x.style.background = colors[elementnumber % colors.length];
+  elements.appendChild(document.createTextNode(x.textContent + " "));
+  sequence += " " + x.textContent;
 }
 
 function checkKeyPress(key) {
   if (key.keyCode == "13" || key.keyCode == "16") {
-    entry = document.createElement("li");
-    list.appendChild(entry);
-    index++;
+    elements = document.createElement("li");
+    elementshtml.appendChild(elements);
+    elementnumber++;
+    sequence += ",";
   }
+}
+
+function savePattern() {
+  sequencehtml.innerHTML = sequence;
 }
