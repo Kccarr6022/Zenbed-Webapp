@@ -19,6 +19,7 @@ window.addEventListener("keydown", checkKeyPress, false);
 
 function theFunction(x) {
   // Function for when square is clicked
+  
   x.style.background = colors[elementnumber % colors.length];
   elements.appendChild(document.createTextNode(x.textContent + " "));
   sequence += " " + x.textContent;
@@ -27,6 +28,7 @@ function theFunction(x) {
 function checkKeyPress(key) {
   if (key.keyCode == "13" || key.keyCode == "16") {
     elements = document.createElement("li");
+    elements.setAttribute("onclick", "editElements(this)");
     elementshtml.appendChild(elements);
     elementnumber++;
     sequence += ",";
@@ -34,5 +36,9 @@ function checkKeyPress(key) {
 }
 
 function savePattern() {
+  sequencehtml.innerHTML = sequence;
+}
+
+function editElements(x) {
   sequencehtml.innerHTML = sequence;
 }
