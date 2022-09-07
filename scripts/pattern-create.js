@@ -1,3 +1,4 @@
+// list of colors
 const colors = [
   "#ff0000",
   "#FF7F00",
@@ -8,12 +9,21 @@ const colors = [
   "#9400D3",
 ];
 
+// variable initialization
+let elementnumber = 0;
+let currentlist = 0;
+let sequence = "";
+
+// variables to edit document
 let elementshtml = document.getElementById("list-of-elements"); // list of elements in html document
 let sequencehtml = document.getElementById("sequence"); // sequence in html document
+
+// creates editable list of elements, adds clickable attribute, and sets bold
 let elements = document.createElement("li");
 elements.setAttribute("onclick", "editElements(this)");
-let elementnumber = 0;
-let sequence = "";
+elements.style.fontWeight = "bold";
+
+//appends the list to html document
 elementshtml.appendChild(elements);
 
 // On click listeners
@@ -28,7 +38,7 @@ function theFunction(x) {
   // chages the color of the cell
   x.style.background = colors[elementnumber % colors.length];
 
-  // appends it to the current list element
+  // appends it to the current element
   elements.appendChild(document.createTextNode(x.textContent + " "));
 
   // appends it to our sequence
@@ -40,9 +50,13 @@ function checkKeyPress(key) {
    * of elements and sets it to bold while setting the old list to normal.
    */
   if (key.keyCode == "13" || key.keyCode == "16") {
-    // creates new list and makes it clickable
+    // sets old list to normal font weight
+    elements.style.fontWeight = "normal";
+
+    // creates new list, makes it clickable, and sets it to bold
     elements = document.createElement("li");
     elements.setAttribute("onclick", "editElements(this)");
+    elements.style.fontWeight = "bold";
 
     // appends the list to html document
     elementshtml.appendChild(elements);
@@ -54,17 +68,17 @@ function checkKeyPress(key) {
 }
 
 function savePattern() {
-/* Function for saving the pattern into AWS RDS database by creating a new pattern row
- * 
- */
+  /* Function for saving the pattern into AWS RDS database by creating a new pattern row
+   *
+   */
   sequencehtml.innerHTML = sequence;
 }
 
 function editElements(x) {
-/* Function triggered when clicking on elements list. Will allow you to edit that list clicked on
- * 
- */
-  
-  // sets the list to bold
+  /* Function triggered when clicking on elements list. Will allow you to edit that list clicked on
+   *
+   */
+
+  // sets the current list to bold
   x.style.fontWeight = "bold";
 }
