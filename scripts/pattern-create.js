@@ -12,7 +12,6 @@ const colors = [
 // variable initialization
 let elementnumber = 0;
 let currentlist = 0;
-let sequence = "";
 
 // variables to edit document
 let elementshtml = document.getElementById("list-of-elements"); // list of elements in html document
@@ -40,9 +39,6 @@ function theFunction(x) {
 
   // appends it to the current element
   elements.appendChild(document.createTextNode(x.textContent + " "));
-
-  // appends it to our sequence
-  sequence += " " + x.textContent;
 }
 
 function checkKeyPress(key) {
@@ -62,7 +58,6 @@ function checkKeyPress(key) {
     elementshtml.appendChild(elements);
 
     // adds coma to sequence and increments elementnumber
-    sequence += ",";
     elementnumber++;
   }
 }
@@ -71,6 +66,16 @@ function savePattern() {
   /* Function for saving the pattern into AWS RDS database by creating a new pattern row
    *
    */
+
+  // initializing string
+  let sequence = "";
+
+  // loops through all the lists and appends them to the sequence
+  for (const child of elementshtml.children) {
+    sequence += child.textContent + ",";
+  }
+
+  // placing our string in database (not yet implemented)
   sequencehtml.innerHTML = sequence;
 }
 
@@ -78,7 +83,17 @@ function editElements(x) {
   /* Function triggered when clicking on elements list. Will allow you to edit that list clicked on
    *
    */
+  // clears boldness in lists
+  for (const child of elementshtml.children) {
+    child.style.fontWeight = "normal";
+  }
 
   // sets the current list to bold
   x.style.fontWeight = "bold";
+
+  // sets list being edited to current
+  elements = x;
+
+  // sets element number accordingly
+  elementnumber = elementshtml.
 }
