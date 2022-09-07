@@ -8,24 +8,29 @@ const colors = [
   "#9400D3",
 ];
 
-let elementshtml = document.getElementById("list-of-elements");
-let sequencehtml = document.getElementById("sequence");
+let elementshtml = document.getElementById("list-of-elements"); // list of elements in html document
+let sequencehtml = document.getElementById("sequence"); // sequence in html document
 let elements = document.createElement("li");
+elements.setAttribute("onclick", "editElements(this)");
 let elementnumber = 0;
 let sequence = "";
 elementshtml.appendChild(elements);
 
 window.addEventListener("keydown", checkKeyPress, false);
+list.onclick = editElements(this);
 
 function theFunction(x) {
   // Function for when square is clicked
-  
+
   x.style.background = colors[elementnumber % colors.length];
   elements.appendChild(document.createTextNode(x.textContent + " "));
   sequence += " " + x.textContent;
 }
 
-function checkKeyPress(key) {
+function checkKeyPress(key) { // Function for when enter is pressed
+ /*
+  
+ */
   if (key.keyCode == "13" || key.keyCode == "16") {
     elements = document.createElement("li");
     elements.setAttribute("onclick", "editElements(this)");
@@ -40,5 +45,5 @@ function savePattern() {
 }
 
 function editElements(x) {
-  sequencehtml.innerHTML = sequence;
+  sequencehtml.innerHTML = x.textContent;
 }

@@ -29,6 +29,7 @@
 
 #list-of-elements > li {
   counter-increment: elementcounter;
+  cursor: pointer;
 }
 #list-of-elements > li::marker {
   content: "Element " counter(elementcounter) ": ";
