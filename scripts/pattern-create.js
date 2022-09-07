@@ -89,6 +89,9 @@ function savePattern() {
     sequence += child.textContent + ",";
   }
 
+  // slices last character from string
+  sequence = sequence.slice(0, -1);
+
   // placing our string in database (not yet implemented)
   sequencehtml.innerHTML = sequence;
 }

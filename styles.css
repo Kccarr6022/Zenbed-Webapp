@@ -34,3 +34,13 @@
 #list-of-elements > li::marker {
   content: "Element " counter(elementcounter) ": ";
 }
+
+/* Scrollable elements nav */
+nav ol {
+  padding-left: 0rem;
+  height: 350px;
+  width: 60%;
+}
+nav ol {
+  overflow-y: scroll;
+}
