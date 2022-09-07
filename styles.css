@@ -34,8 +34,3 @@
 #list-of-elements > li::marker {
   content: "Element " counter(elementcounter) ": ";
 }
-
-#list-of-elements > li:last-child {
-  content: "Element " counter(elementcounter) ": ";
-  font-weight: bold;
-}
