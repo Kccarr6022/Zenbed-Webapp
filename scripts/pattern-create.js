@@ -34,17 +34,31 @@ function theFunction(x) {
    *
    */
 
-  // chages the color of the cell
-  x.style.background = colors[elementnumber % colors.length];
+  if (elements.textContent.includes(x.textContent)) {
+    // checks if the cell is already filled
 
-  // appends it to the current element
-  elements.appendChild(document.createTextNode(x.textContent + " "));
+    // if the cell is already in the list then remove it
+    elements.textContent = elements.textContent.replace(x.textContent, "");
+
+    // set color to default
+    x.style.backgroundColor = "white";
+  } else {
+    // checks if the cell isnt already in the list then append
+
+    // chages the color of the cell
+    x.style.background = colors[elementnumber % colors.length];
+
+    // appends it to the current element
+    elements.appendChild(document.createTextNode(x.textContent + " "));
+  }
 }
 
 function checkKeyPress(key) {
   /* Checks if enter key is pressed. If enter is pressed then the function increments a new list
    * of elements and sets it to bold while setting the old list to normal.
    */
+
+  // checks if enter or shift key is pressed
   if (key.keyCode == "13" || key.keyCode == "16") {
     // sets old list to normal font weight
     elements.style.fontWeight = "normal";
@@ -95,5 +109,11 @@ function editElements(x) {
   elements = x;
 
   // sets element number accordingly
-  elementnumber = elementshtml.
+  elementnumber = -1;
+  for (const child of elementshtml.children) {
+    elementnumber++;
+    if (child == x) {
+      break;
+    }
+  }
 }
