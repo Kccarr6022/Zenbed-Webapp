@@ -147,7 +147,5 @@ function highlight() {
       // else set opacity to 90%
       grid[i].style.opacity = "75%";
     }
-
-    sequencehtml.innerHTML = grid[i].style.background;
   }
 }
