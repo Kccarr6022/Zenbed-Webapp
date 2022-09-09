@@ -1,12 +1,12 @@
 // list of colors
 const colors = [
-  "#ff0000",
-  "#FF7F00",
-  "#FFFF00",
-  "#00FF00",
-  "#0000FF",
-  "#4B0082",
-  "#9400D3",
+  "rgb(255,0,0)",
+  "rgb(255,127,0)",
+  "rgb(255,255,0)",
+  "rgb(0,255,0)",
+  "rgb(0,0,255)",
+  "rgb(75,0,130)",
+  "#rgb(148,0,211)",
 ];
 
 // variable initialization
@@ -16,6 +16,7 @@ let currentlist = 0;
 // variables to edit document
 let elementshtml = document.getElementById("list-of-elements"); // list of elements in html document
 let sequencehtml = document.getElementById("sequence"); // sequence in html document
+let grid = document.getElementsByClassName("grid-item"); // grid of cells in html document
 
 // creates editable list of elements, adds clickable attribute, and sets bold
 let elements = document.createElement("li");
@@ -41,7 +42,7 @@ function theFunction(x) {
     elements.textContent = elements.textContent.replace(x.textContent, "");
 
     // set color to default
-    x.style.backgroundColor = "white";
+    x.style.background = "white";
   } else {
     // checks if the cell isnt already in the list then append
 
@@ -51,6 +52,8 @@ function theFunction(x) {
     // appends it to the current element
     elements.appendChild(document.createTextNode(x.textContent + " "));
   }
+
+  savePattern();
 }
 
 function checkKeyPress(key) {
@@ -73,6 +76,8 @@ function checkKeyPress(key) {
 
     // adds coma to sequence and increments elementnumber
     elementnumber++;
+
+    highlight(); // function to set all other cells to 90% opacity
   }
 }
 
@@ -100,6 +105,16 @@ function editElements(x) {
   /* Function triggered when clicking on elements list. Will allow you to edit that list clicked on
    *
    */
+
+  // sets element number to current
+  elementnumber = -1;
+  for (const child of elementshtml.children) {
+    elementnumber++;
+    if (child == x) {
+      break;
+    }
+  }
+
   // clears boldness in lists
   for (const child of elementshtml.children) {
     child.style.fontWeight = "normal";
@@ -111,12 +126,28 @@ function editElements(x) {
   // sets list being edited to current
   elements = x;
 
-  // sets element number accordingly
-  elementnumber = -1;
-  for (const child of elementshtml.children) {
-    elementnumber++;
-    if (child == x) {
-      break;
+  highlight(); // function to set all other cells to 90% opacity
+}
+
+function highlight() {
+  /* Function that sets cells in every list except the current one to 90% opacity
+   *
+   */
+  for (var i = 0; i < grid.length; i++) {
+    // loops through all cells in grid
+
+    // if the cell is in the current list then set opacity to 100% rgb(255, 255, 255)
+    if (grid[i].style.background == "rgb(255, 255, 255)") {
+      grid[i].style.opacity = "100%";
+    } else if (
+      grid[i].style.background == colors[elementnumber % colors.length]
+    ) {
+      grid[i].style.opacity = "100%";
+    } else {
+      // else set opacity to 90%
+      grid[i].style.opacity = "75%";
     }
+
+    sequencehtml.innerHTML = grid[i].style.background;
   }
 }

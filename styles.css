@@ -4,10 +4,11 @@
   padding: 2.5px;
   background-color: black;
 }
-#grid-item {
+.grid-item {
   border: 0.1px solid rgba(0, 0, 0, 1);
   padding: 7.5px;
   font-size: 5px;
+  background-color: white;
   text-align: center;
   cursor: pointer;
 }
@@ -17,7 +18,7 @@
   padding: 7.5px;
   font-size: 5px;
   text-align: center;
-  color: black;
+  color: white;
   border: 0.1px solid rgb(255, 255, 255);
   background-color: rgb(255, 255, 255);
 }
@@ -37,10 +38,10 @@
 
 /* Scrollable elements nav */
 nav ol {
-  padding-left: 0rem;
   height: 350px;
-  width: 60%;
+  width: 88%;
 }
+
 nav ol {
   overflow-y: scroll;
 }
