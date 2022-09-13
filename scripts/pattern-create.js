@@ -1,12 +1,24 @@
 // list of colors
 const colors = [
-  "rgb(255,0,0)",
-  "rgb(255,127,0)",
-  "rgb(255,255,0)",
-  "rgb(0,255,0)",
-  "rgb(0,0,255)",
-  "rgb(75,0,130)",
-  "#rgb(148,0,211)",
+  "rgb(255,0,0)", // red
+  "rgb(255,153,0)", // orange
+  "rgb(255,255,0)", // yellow
+  "rgb(0,255,0)", // green
+  "rgb(0,255,255)", // blue
+  "rgb(0,0,255)", // dark blue
+  "rgb(75,0,130)", // purple
+  "rgb(148,0,211)", // dark purple
+];
+
+const colors_faded = [
+  "rgb(234, 153, 153)", // red
+  "rgb(249, 203, 156)", // orange
+  "rgb(255, 229, 153)", // yellow
+  "rgb(182, 215, 168)", // green
+  "rgb(182, 215, 168)", // blue
+  "rgb(162, 196, 201)", // dark blue
+  "rgb(159, 197, 232)", // purple
+  "rgb(180, 167, 214)", // dark purple
 ];
 
 // variable initialization
@@ -29,6 +41,10 @@ elementshtml.appendChild(elements);
 // On click listeners
 window.addEventListener("keydown", checkKeyPress, false);
 list.onclick = editElements(this);
+
+//keeps scrollbar bottom
+var objDiv = document.getElementById("scrolling");
+objDiv.scrollTop = objDiv.scrollHeight;
 
 function theFunction(x) {
   /*  Function for when the user clicks on a cell in the grid
@@ -91,14 +107,14 @@ function savePattern() {
 
   // loops through all the lists and appends them to the sequence
   for (const child of elementshtml.children) {
-    sequence += child.textContent + ",";
+    sequence += child.textContent + ", ";
   }
 
   // slices last character from string
-  sequence = sequence.slice(0, -1);
+  sequence = sequence.slice(0, -2);
 
   // placing our string in database (not yet implemented)
-  sequencehtml.innerHTML = sequence;
+  sequencehtml.value = sequence;
 }
 
 function editElements(x) {
@@ -129,6 +145,8 @@ function editElements(x) {
   highlight(); // function to set all other cells to 90% opacity
 }
 
+function updateHTML(x) {}
+
 function highlight() {
   /* Function that sets cells in every list except the current one to 90% opacity
    *
@@ -136,16 +154,29 @@ function highlight() {
   for (var i = 0; i < grid.length; i++) {
     // loops through all cells in grid
 
-    // if the cell is in the current list then set opacity to 100% rgb(255, 255, 255)
-    if (grid[i].style.background == "rgb(255, 255, 255)") {
-      grid[i].style.opacity = "100%";
+    // if the cell is at the current element set it to the current color
+    if (elements.textContent.includes(grid[i].textContent)) {
+
+      // sets the color of the cell out of color list
+      grid[i].style.background = colors[elementnumber % colors.length];
+
+      // if the cell is in any other list set it to faded color at its index
     } else if (
-      grid[i].style.background == colors[elementnumber % colors.length]
+      elementshtml.textContent.includes(" " + grid[i].textContent + " ")
     ) {
-      grid[i].style.opacity = "100%";
-    } else {
-      // else set opacity to 90%
-      grid[i].style.opacity = "75%";
+
+      // finds the last list index that the cell is in
+      let index = 0;
+      for (let i = elementshtml.getElementsByTagName("li").length; i > 0; i--) {
+        index++;
+        if (child.includes(" " + grid[i].textContent + " ") {
+          break;
+        }
+
+      }
+
+
+      grid[i].style.background = colors_faded[index % colors.length];
     }
   }
 }

@@ -85,10 +85,10 @@
                 <div style="background: rgb(255,255,255)" id="grid-item-border">A1</div>
                 <div style="background: rgb(255,255,255)" id="grid-item-border">1</div>
                 <div style="background: rgb(255,255,255)" onclick="theFunction(this)"class="grid-item">A1</div>
+                <div style="background: rgb(255,255,255)" onclick="theFunction(this)"class="grid-item">B1</div>
                 <div style="background: rgb(255,255,255)" onclick="theFunction(this)"class="grid-item">C1</div>
                 <div style="background: rgb(255,255,255)" onclick="theFunction(this)"class="grid-item">D1</div>
                 <div style="background: rgb(255,255,255)" onclick="theFunction(this)"class="grid-item">E1</div>
-                <div style="background: rgb(255,255,255)" onclick="theFunction(this)"class="grid-item">B1</div>
                 <div style="background: rgb(255,255,255)" onclick="theFunction(this)"class="grid-item">F1</div>
                 <div style="background: rgb(255,255,255)" onclick="theFunction(this)"class="grid-item">G1</div>
                 <div style="background: rgb(255,255,255)" onclick="theFunction(this)"class="grid-item">H1</div>
@@ -368,7 +368,12 @@
       style="margin-top: 1rem;" onclick="savePattern()">Save Pattern to Account</button>
       <button type="button" class="btn btn-lg btn-primary col-12"
       style="margin-top: 1rem;">Play Pattern</button>
-      <p id="sequence"></p>
+      <textarea id="sequence"
+                type="text"
+                id="creditcardccv"
+                placeholder="Sequence"
+                rows="5"
+                class="form-control col-12"></textarea>
     <script
         src="scripts/pattern-create.js">
     </script>
