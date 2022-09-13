@@ -15,10 +15,10 @@ const colors_faded = [
   "rgb(249, 203, 156)", // orange faded
   "rgb(255, 229, 153)", // yellow faded
   "rgb(182, 215, 168)", // green faded
-  "rgb(182, 215, 168)", // blue faded
-  "rgb(162, 196, 201)", // dark blue faded
-  "rgb(159, 197, 232)", // purple faded
+  "rgb(162, 196, 201)", // blue faded
+  "rgb(159, 197, 232)", // dark blue faded
   "rgb(180, 167, 214)", // dark purple faded
+  "rgb(213, 166, 189)", // purple faded
 ];
 
 // variable initialization
