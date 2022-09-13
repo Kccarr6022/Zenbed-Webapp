@@ -156,7 +156,6 @@ function highlight() {
 
     // if the cell is at the current element set it to the current color
     if (elements.textContent.includes(grid[i].textContent)) {
-
       // sets the color of the cell out of color list
       grid[i].style.background = colors[elementnumber % colors.length];
 
@@ -164,19 +163,18 @@ function highlight() {
     } else if (
       elementshtml.textContent.includes(" " + grid[i].textContent + " ")
     ) {
-
+      
       // finds the last list index that the cell is in
-      let index = 0;
-      for (let i = elementshtml.getElementsByTagName("li").length; i > 0; i--) {
-        index++;
-        if (child.includes(" " + grid[i].textContent + " ") {
+      let index = elementshtml.getElementsByTagName("li").length - 1;
+      for (let i = elementshtml.getElementsByTagName("li").length - 1; i >= 0; i--) {
+        if (child.includes(" " + grid[i].textContent + " ")) {
+          // sets the color to that faded index
+          grid[i].style.background = colors_faded[elementnumber % colors.length];
           break;
         }
-
       }
 
-
-      grid[i].style.background = colors_faded[index % colors.length];
+      
     }
   }
 }
