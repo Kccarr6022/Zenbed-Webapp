@@ -11,14 +11,14 @@ const colors = [
 ];
 
 const colors_faded = [
-  "rgb(234, 153, 153)", // red
-  "rgb(249, 203, 156)", // orange
-  "rgb(255, 229, 153)", // yellow
-  "rgb(182, 215, 168)", // green
-  "rgb(182, 215, 168)", // blue
-  "rgb(162, 196, 201)", // dark blue
-  "rgb(159, 197, 232)", // purple
-  "rgb(180, 167, 214)", // dark purple
+  "rgb(234, 153, 153)", // red faded
+  "rgb(249, 203, 156)", // orange faded
+  "rgb(255, 229, 153)", // yellow faded
+  "rgb(182, 215, 168)", // green faded
+  "rgb(182, 215, 168)", // blue faded
+  "rgb(162, 196, 201)", // dark blue faded
+  "rgb(159, 197, 232)", // purple faded
+  "rgb(180, 167, 214)", // dark purple faded
 ];
 
 // variable initialization
@@ -163,18 +163,18 @@ function highlight() {
     } else if (
       elementshtml.textContent.includes(" " + grid[i].textContent + " ")
     ) {
-      
-      // finds the last list index that the cell is in
-      let index = elementshtml.getElementsByTagName("li").length - 1;
-      for (let i = elementshtml.getElementsByTagName("li").length - 1; i >= 0; i--) {
-        if (child.includes(" " + grid[i].textContent + " ")) {
-          // sets the color to that faded index
-          grid[i].style.background = colors_faded[elementnumber % colors.length];
+      // finds the last list index that the cell was in
+      let list = elementshtml.getElementsByTagName("li");
+      let index = 0;
+      sequencehtml.value = list[0].textContent;
+      for (var j = list.length - 1; j >= 0; j--) {
+        if (list[j].textContent.includes(grid[i].textContent)) {
+          index = j;
           break;
         }
       }
 
-      
+      grid[i].style.background = colors_faded[index % colors.length];
     }
   }
 }
