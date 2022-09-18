@@ -155,20 +155,18 @@ function highlight() {
     // loops through all cells in grid
 
     // if the cell is at the current element set it to the current color
-    if (elements.textContent.includes(grid[i].textContent)) {
+    if (elements.textContent.includes(grid[i].textContent + " ")) {
       // sets the color of the cell out of color list
       grid[i].style.background = colors[elementnumber % colors.length];
 
       // if the cell is in any other list set it to faded color at its index
-    } else if (
-      elementshtml.textContent.includes(" " + grid[i].textContent + " ")
-    ) {
+    } else if (elementshtml.textContent.includes(grid[i].textContent + " ")) {
       // finds the last list index that the cell was in
       let list = elementshtml.getElementsByTagName("li");
       let index = 0;
       sequencehtml.value = list[0].textContent;
       for (var j = list.length - 1; j >= 0; j--) {
-        if (list[j].textContent.includes(grid[i].textContent)) {
+        if (list[j].textContent.includes(grid[i].textContent + " ")) {
           index = j;
           break;
         }
