@@ -30,7 +30,6 @@ let elementshtml = document.getElementById("list-of-elements"); // list of eleme
 let sequencehtml = document.getElementById("sequence"); // sequence in html document
 let grid = document.getElementsByClassName("grid-item"); // grid of cells in html document
 
-
 let elements = document.createElement("li");
 let deletebutton = document.createElement("button");
 
@@ -39,14 +38,14 @@ elements.setAttribute("onclick", "editElements(this)");
 elements.style.fontWeight = "bold";
 
 // attributes for delete button
-deletebutton.setAttribute("onclick", "deleteElement(this)");
+deletebutton.setAttribute("onclick", "deleteElements(this)");
 deletebutton.textContent = "X";
+
+// appends the delete element button
+elements.appendChild(deletebutton);
 
 //appends the list to html document
 elementshtml.appendChild(elements);
-
-// appends the delete element button
-elementshtml.appendChild(deletebutton);
 
 // On click listeners
 window.addEventListener("keydown", checkKeyPress, false);
@@ -96,12 +95,14 @@ function checkKeyPress(key) {
     elements = document.createElement("li");
     deletebutton = document.createElement("button");
     deletebutton.textContent = "X";
+    deletebutton.setAttribute("onclick", "deleteElements(this)");
     elements.setAttribute("onclick", "editElements(this)");
     elements.style.fontWeight = "bold";
 
+    elements.appendChild(deletebutton);
+
     // appends the list to html document
     elementshtml.appendChild(elements);
-    elementshtml.appendChild(deletebutton);
 
     // adds coma to sequence and increments elementnumber
     elementnumber++;
@@ -158,7 +159,25 @@ function editElements(x) {
   highlight(); // function to set all other cells to 90% opacity
 }
 
-function deleteElement(element) {}
+function deleteElements(element) {
+  /* Function triggered when clicking on delete button. Will delete the element clicked on
+   *
+   */
+
+  // deletes the element from the list
+  element.parentNode.remove();
+
+  // sets the element number to the last element
+  elementnumber = elementshtml.children.length - 1;
+
+  // sets the element being edited to the last element
+  elements = elementshtml.children[elementnumber];
+
+  // sets the last element to bold
+  elements.style.fontWeight = "bold";
+
+  highlight(); // function to set all other cells to 90% opacity
+}
 
 function updateHTML(x) {}
 
@@ -179,7 +198,6 @@ function highlight() {
       // finds the last list index that the cell was in
       let list = elementshtml.getElementsByTagName("li");
       let index = 0;
-      sequencehtml.value = list[0].textContent;
       for (var j = list.length - 1; j >= 0; j--) {
         if (list[j].textContent.includes(grid[i].textContent + " ")) {
           index = j;
