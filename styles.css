@@ -34,7 +34,13 @@
   cursor: pointer;
 }
 #list-of-elements > li::marker {
-  content: "Element " counter(elementcounter) ": ";
+  content: counter(elementcounter) ": ";
+}
+
+#list-of-elements > button {
+  display: inline-block;
+  vertical-align:top;
+  background-color: red;
 }
 
 /* Scrollable elements nav */
@@ -70,19 +76,6 @@ nav ol {
   color: white;
   border: 0.1px solid rgb(255, 255, 255);
   background-color: rgb(255, 255, 255);
-}
-
-#list-of-elements {
-  font-size: 24px;
-  color: black;
-}
-
-#list-of-elements > li {
-  counter-increment: elementcounter;
-  cursor: pointer;
-}
-#list-of-elements > li::marker {
-  content: "Element " counter(elementcounter) ": ";
 }
 
 /* Scrollable elements nav */

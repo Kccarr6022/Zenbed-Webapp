@@ -30,13 +30,23 @@ let elementshtml = document.getElementById("list-of-elements"); // list of eleme
 let sequencehtml = document.getElementById("sequence"); // sequence in html document
 let grid = document.getElementsByClassName("grid-item"); // grid of cells in html document
 
-// creates editable list of elements, adds clickable attribute, and sets bold
+
 let elements = document.createElement("li");
+let deletebutton = document.createElement("button");
+
+// attrbutes for elements
 elements.setAttribute("onclick", "editElements(this)");
 elements.style.fontWeight = "bold";
 
+// attributes for delete button
+deletebutton.setAttribute("onclick", "deleteElement(this)");
+deletebutton.textContent = "X";
+
 //appends the list to html document
 elementshtml.appendChild(elements);
+
+// appends the delete element button
+elementshtml.appendChild(deletebutton);
 
 // On click listeners
 window.addEventListener("keydown", checkKeyPress, false);
@@ -144,6 +154,8 @@ function editElements(x) {
 
   highlight(); // function to set all other cells to 90% opacity
 }
+
+function deleteElement(element) {}
 
 function updateHTML(x) {}
 
