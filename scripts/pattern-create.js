@@ -94,11 +94,14 @@ function checkKeyPress(key) {
 
     // creates new list, makes it clickable, and sets it to bold
     elements = document.createElement("li");
+    deletebutton = document.createElement("button");
+    deletebutton.textContent = "X";
     elements.setAttribute("onclick", "editElements(this)");
     elements.style.fontWeight = "bold";
 
     // appends the list to html document
     elementshtml.appendChild(elements);
+    elementshtml.appendChild(deletebutton);
 
     // adds coma to sequence and increments elementnumber
     elementnumber++;
