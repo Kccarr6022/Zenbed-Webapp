@@ -1,16 +1,24 @@
+/* The grid */
+
+/* Keeps grid the same aspect ratio */
 .grid-container {
+  aspect-ratio: 2 / 3;
+  position: relative;
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
   padding: 2.5px;
   background-color: white;
   background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
 }
 .grid-item {
   border: 0.1px solid rgba(0, 0, 0, 1);
   padding: 7.5px;
   font-size: 5px;
   background-color: white;
-  text-align: center;
+  font-size: 0.9vh;
   cursor: pointer;
 }
 
@@ -25,7 +33,7 @@
 }
 
 #list-of-elements {
-  font-size: 24px;
+  font-size: 2vh;
   color: black;
 }
 
@@ -39,18 +47,17 @@
 
 #list-of-elements > button {
   display: inline-block;
-  vertical-align:top;
+  vertical-align: top;
   background-color: red;
   display: none;
 }
 
 #list-of-elements > button:hover {
   display: inline-block;
-  vertical-align:top;
+  vertical-align: top;
   background-color: red;
   display: inline;
 }
-
 
 /* Scrollable elements nav */
 nav ol {
@@ -60,21 +67,6 @@ nav ol {
 
 nav ol {
   overflow-y: scroll;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
-  padding: 2.5px;
-  background-color: white;
-}
-.grid-item {
-  border: 0.1px solid rgba(0, 0, 0, 1);
-  padding: 7.5px;
-  font-size: 5px;
-  background-color: white;
-  text-align: center;
-  cursor: pointer;
 }
 
 #grid-item-border {
