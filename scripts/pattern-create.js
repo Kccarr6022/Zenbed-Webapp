@@ -108,8 +108,12 @@ function nextElement() {
 
   elements.appendChild(deletebutton);
 
-  // appends the list to html document
-  elementshtml.appendChild(elements);
+  // appends the list to html document based on element number
+  if (elementnumber == elementshtml.children.length - 1) {
+    elementshtml.appendChild(elements);
+  } else {
+    elementshtml.insertBefore(elements, elementshtml.children[elementnumber + 1]);
+  }
 
   // adds coma to sequence and increments elementnumber
   elementnumber++;
