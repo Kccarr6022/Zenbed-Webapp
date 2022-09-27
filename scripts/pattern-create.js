@@ -64,7 +64,7 @@ function cellClicked(cell) {
     // checks if the cell is already filled
 
     // if the cell is already in the list then remove it
-    elements.textContent = elements.textContent.replace(cell.textContent, "");
+    elements.innerHTML = elements.innerHTML.replace(cell.textContent, "");
 
     // set color to default
     cell.style.background = "white";
@@ -88,27 +88,31 @@ function checkKeyPress(key) {
 
   // checks if enter or shift key is pressed
   if (key.keyCode == "13" || key.keyCode == "16") {
-    // sets old list to normal font weight
-    elements.style.fontWeight = "normal";
-
-    // creates new list, makes it clickable, and sets it to bold
-    elements = document.createElement("li");
-    deletebutton = document.createElement("button");
-    deletebutton.textContent = "X";
-    deletebutton.setAttribute("onclick", "deleteElements(this)");
-    elements.setAttribute("onclick", "editElements(this)");
-    elements.style.fontWeight = "bold";
-
-    elements.appendChild(deletebutton);
-
-    // appends the list to html document
-    elementshtml.appendChild(elements);
-
-    // adds coma to sequence and increments elementnumber
-    elementnumber++;
-
-    highlight(); // function to set all other cells to 90% opacity
+    nextElement();
   }
+
+  highlight(); // function to set all other cells to 90% opacity
+}
+
+function nextElement() {
+  // sets old list to normal font weight
+  elements.style.fontWeight = "normal";
+
+  // creates new list, makes it clickable, and sets it to bold
+  elements = document.createElement("li");
+  deletebutton = document.createElement("button");
+  deletebutton.textContent = "X";
+  deletebutton.setAttribute("onclick", "deleteElements(this)");
+  elements.setAttribute("onclick", "editElements(this)");
+  elements.style.fontWeight = "bold";
+
+  elements.appendChild(deletebutton);
+
+  // appends the list to html document
+  elementshtml.appendChild(elements);
+
+  // adds coma to sequence and increments elementnumber
+  elementnumber++;
 }
 
 function savePattern() {
