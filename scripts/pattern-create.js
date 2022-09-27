@@ -60,11 +60,11 @@ function cellClicked(cell) {
    *
    */
 
-  if (elements.textContent.includes(x.textContent)) {
+  if (elements.textContent.includes(cell.textContent)) {
     // checks if the cell is already filled
 
     // if the cell is already in the list then remove it
-    elements.textContent = elements.textContent.replace(x.textContent, "");
+    elements.textContent = elements.textContent.replace(cell.textContent, "");
 
     // set color to default
     cell.style.background = "white";
