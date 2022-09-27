@@ -55,7 +55,7 @@ list.onclick = editElements(this);
 var objDiv = document.getElementById("scrolling");
 objDiv.scrollTop = objDiv.scrollHeight;
 
-function theFunction(x) {
+function cellClicked(cell) {
   /*  Function for when the user clicks on a cell in the grid
    *
    */
@@ -67,15 +67,15 @@ function theFunction(x) {
     elements.textContent = elements.textContent.replace(x.textContent, "");
 
     // set color to default
-    x.style.background = "white";
+    cell.style.background = "white";
   } else {
     // checks if the cell isnt already in the list then append
 
     // chages the color of the cell
-    x.style.background = colors[elementnumber % colors.length];
+    cell.style.background = colors[elementnumber % colors.length];
 
     // appends it to the current element
-    elements.appendChild(document.createTextNode(x.textContent + " "));
+    elements.appendChild(document.createTextNode(cell.textContent + " "));
   }
 
   savePattern();

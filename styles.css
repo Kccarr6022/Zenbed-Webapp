@@ -41,7 +41,16 @@
   display: inline-block;
   vertical-align:top;
   background-color: red;
+  display: none;
 }
+
+#list-of-elements > button:hover {
+  display: inline-block;
+  vertical-align:top;
+  background-color: red;
+  display: inline;
+}
+
 
 /* Scrollable elements nav */
 nav ol {
