@@ -112,7 +112,10 @@ function nextElement() {
   if (elementnumber == elementshtml.children.length - 1) {
     elementshtml.appendChild(elements);
   } else {
-    elementshtml.insertBefore(elements, elementshtml.children[elementnumber + 1]);
+    elementshtml.insertBefore(
+      elements,
+      elementshtml.children[elementnumber + 1]
+    );
   }
 
   // adds coma to sequence and increments elementnumber
@@ -129,7 +132,7 @@ function savePattern() {
 
   // loops through all the lists and appends them to the sequence
   for (const child of elementshtml.children) {
-    sequence += child.textContent + ", ";
+    sequence += (child.textContent + ", ").replace("X", "");
   }
 
   // slices last character from string
