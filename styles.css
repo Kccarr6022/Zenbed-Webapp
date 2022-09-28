@@ -2,6 +2,7 @@
 
 /* Keeps grid the same aspect ratio */
 .grid-container {
+  max-height: 80vh;
   aspect-ratio: 2 / 3;
   position: relative;
   display: grid;
@@ -14,6 +15,7 @@
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
 }
 .grid-item {
+  position: relative;
   border: 0.1px solid rgba(0, 0, 0, 1);
   padding: 7.5px;
   font-size: 5px;
@@ -34,7 +36,7 @@
 
 #list-of-elements {
   font-size: 2vh;
-  height: 60vw;
+  height: 50vh;
   color: black;
 }
 
@@ -89,4 +91,10 @@ nav ol {
 
 #scrolling > nav ol {
   overflow-y: scroll;
+}
+
+/* Buttons */
+#buttons {
+  padding-left: 2.5rem;
+  padding-right: 5rem;
 }
