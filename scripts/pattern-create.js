@@ -147,6 +147,10 @@ function editElements(x) {
    *
    */
 
+  //if delete button is clicked then dont do anything
+  if (x.target.nodeName == "BUTTON") {
+    return;
+  }
   // if the element is already selected then deselect it
   if (x.style.fontWeight == "bold") {
     x.style.fontWeight = "normal";
