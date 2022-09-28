@@ -95,6 +95,7 @@ nav ol {
 
 /* Buttons */
 #buttons {
+  padding-top: 5rem;
   padding-left: 2.5rem;
   padding-right: 5rem;
 }

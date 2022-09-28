@@ -147,45 +147,44 @@ function editElements(x) {
    *
    */
 
-  // sets element number to current
-  elementnumber = -1;
-  for (const child of elementshtml.children) {
-    elementnumber++;
-    if (child == x) {
-      break;
+  // if the element is already selected then deselect it
+  if (x.style.fontWeight == "bold") {
+    x.style.fontWeight = "normal";
+    elementnumber = -1;
+  } else {
+    // if the element is not selected then select it
+
+    // sets element number to current
+    elementnumber = -1;
+    for (const child of elementshtml.children) {
+      elementnumber++;
+      if (child == x) {
+        break;
+      }
     }
+
+    // clears boldness in lists
+    for (const child of elementshtml.children) {
+      child.style.fontWeight = "normal";
+    }
+
+    // sets the current list to bold
+    x.style.fontWeight = "bold";
+
+    // sets list being edited to current
+    elements = x;
+
+    highlight(); // function to set all other cells to 90% opacity
   }
-
-  // clears boldness in lists
-  for (const child of elementshtml.children) {
-    child.style.fontWeight = "normal";
-  }
-
-  // sets the current list to bold
-  x.style.fontWeight = "bold";
-
-  // sets list being edited to current
-  elements = x;
-
-  highlight(); // function to set all other cells to 90% opacity
 }
 
-function deleteElements(element) {
+function deleteElements(thiselement) {
   /* Function triggered when clicking on delete button. Will delete the element clicked on
    *
    */
 
   // deletes the element from the list
-  element.parentNode.remove();
-
-  // sets the element number to the last element
-  elementnumber = elementshtml.children.length - 1;
-
-  // sets the element being edited to the last element
-  elements = elementshtml.children[elementnumber];
-
-  // sets the last element to bold
-  elements.style.fontWeight = "bold";
+  thiselement.parentNode.remove();
 
   highlight(); // function to set all other cells to 90% opacity
 }
@@ -217,6 +216,8 @@ function highlight() {
       }
 
       grid[i].style.background = colors_faded[index % colors.length];
+    } else {
+      grid[i].style.background = "white";
     }
   }
 }
