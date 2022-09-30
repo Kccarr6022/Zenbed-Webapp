@@ -1,3 +1,4 @@
+// VARIABLES
 // list of colors
 const colors = [
   "rgb(255,0,0)", // red
@@ -22,15 +23,16 @@ const colors_faded = [
 ];
 
 // variable initialization
-let elementnumber = 0;
-let currentlist = 0;
+let elementnumber = 0; // list index at moment
 
 // variables to edit document
 let elementshtml = document.getElementById("list-of-elements"); // list of elements in html document
 let sequencehtml = document.getElementById("sequence"); // sequence in html document
 let grid = document.getElementsByClassName("grid-item"); // grid of cells in html document
+// VARIABLES
 
-let elements = document.createElement("li");
+// DOCUMENT SETUP
+let elements = document.createElement("li"); // current list
 let deletebutton = document.createElement("button");
 
 // attrbutes for elements
@@ -54,31 +56,26 @@ list.onclick = editElements(this);
 //keeps scrollbar bottom
 var objDiv = document.getElementById("scrolling");
 objDiv.scrollTop = objDiv.scrollHeight;
+// DOCUMENT SETUP
 
+// FUNCTIONS
 function cellClicked(cell) {
   /*  Function for when the user clicks on a cell in the grid
    *
    */
 
+  // checks if the cell is already filled
   if (elements.textContent.includes(cell.textContent)) {
-    // checks if the cell is already filled
-
     // if the cell is already in the list then remove it
     elements.innerHTML = elements.innerHTML.replace(cell.textContent, "");
-
-    // set color to default
-    cell.style.background = "white";
+    cell.style.removeProperty("background");
   } else {
-    // checks if the cell isnt already in the list then append
-
-    // chages the color of the cell
-    cell.style.background = colors[elementnumber % colors.length];
-
-    // appends it to the current element
+    // appends cell to the current element
     elements.appendChild(document.createTextNode(cell.textContent + " "));
+    cell.style.background = colors[elementnumber];
   }
 
-  savePattern();
+  updateInput();
 }
 
 function checkKeyPress(key) {
@@ -91,7 +88,7 @@ function checkKeyPress(key) {
     nextElement();
   }
 
-  highlight(); // function to set all other cells to 90% opacity
+  drawGrid(); // function to set all other cells to 90% opacity
 }
 
 function nextElement() {
@@ -122,7 +119,7 @@ function nextElement() {
   elementnumber++;
 }
 
-function savePattern() {
+function updateInput() {
   /* Function for saving the pattern into AWS RDS database by creating a new pattern row
    *
    */
@@ -146,11 +143,6 @@ function editElements(x) {
   /* Function triggered when clicking on elements list. Will allow you to edit that list clicked on
    *
    */
-
-  //if delete button is clicked then dont do anything
-  if (x.target.nodeName == "BUTTON") {
-    return;
-  }
   // if the element is already selected then deselect it
   if (x.style.fontWeight == "bold") {
     x.style.fontWeight = "normal";
@@ -178,7 +170,7 @@ function editElements(x) {
     // sets list being edited to current
     elements = x;
 
-    highlight(); // function to set all other cells to 90% opacity
+    drawGrid(); // function to set all other cells to 90% opacity
   }
 }
 
@@ -190,12 +182,16 @@ function deleteElements(thiselement) {
   // deletes the element from the list
   thiselement.parentNode.remove();
 
-  highlight(); // function to set all other cells to 90% opacity
+  // decrements element number
+  elementnumber--;
+  editElements(elementshtml.children[elementnumber]); // sets the last element to bold
+
+  drawGrid(); // function to set all other cells to 90% opacity
 }
 
 function updateHTML(x) {}
 
-function highlight() {
+function drawGrid() {
   /* Function that sets cells in every list except the current one to 90% opacity
    *
    */
@@ -221,7 +217,7 @@ function highlight() {
 
       grid[i].style.background = colors_faded[index % colors.length];
     } else {
-      grid[i].style.background = "white";
+      void 0;
     }
   }
 }
