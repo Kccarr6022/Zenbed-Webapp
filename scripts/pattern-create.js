@@ -87,8 +87,6 @@ function checkKeyPress(key) {
   if (key.keyCode == "13" || key.keyCode == "16") {
     nextElement();
   }
-
-  drawGrid(); // function to set all other cells to 90% opacity
 }
 
 function nextElement() {
@@ -117,6 +115,7 @@ function nextElement() {
 
   // adds coma to sequence and increments elementnumber
   elementnumber++;
+  drawGrid();
 }
 
 function updateInput() {

@@ -27,7 +27,6 @@
 
 .grid-item:hover {
   background: red;
-  border: 1.35px solid rgba(0, 0, 0, 1);
 }
 
 #grid-item-border {
