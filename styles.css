@@ -26,7 +26,7 @@
 }
 
 .grid-item:hover {
-  background: red;
+  border: 1px solid rgba(0, 0, 0, 1);
 }
 
 #grid-item-border {
@@ -71,6 +71,7 @@
 nav ol {
   height: 350px;
   width: 88%;
+  transform: translate(-15%, 0);
 }
 
 nav ol {
@@ -100,7 +101,6 @@ nav ol {
 
 /* Buttons */
 #buttons {
-  padding-top: 5rem;
-  padding-left: 2.5rem;
-  padding-right: 5rem;
+  padding-top: 0rem;
+  padding-right: 0rem;
 }

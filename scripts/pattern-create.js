@@ -143,6 +143,11 @@ function editElements(x) {
    *
    */
   // if the element is already selected then deselect it
+
+  // if delete button is pressed then do nothing
+  if (x.textContent == "X") {
+    return;
+  }
   if (x.style.fontWeight == "bold") {
     x.style.fontWeight = "normal";
     elementnumber = -1;
@@ -173,22 +178,36 @@ function editElements(x) {
   }
 }
 
-function deleteElements(thiselement) {
+function deleteElements(thisElement) {
   /* Function triggered when clicking on delete button. Will delete the element clicked on
    *
    */
 
+  elementnumber = 0;
+  for (const i in elementshtml.children) {
+    if (elementshtml.children[i] == thisElement.parentNode) {
+      elementnumber = i;
+    }
+  }
+  
   // deletes the element from the list
-  thiselement.parentNode.remove();
+  thisElement.parentNode.remove();
 
   // decrements element number
   elementnumber--;
-  editElements(elementshtml.children[elementnumber]); // sets the last element to bold
+  elements = elementshtml.children[elementnumber];
+  editElements(elements);
 
   drawGrid(); // function to set all other cells to 90% opacity
 }
 
-function updateHTML(x) {}
+function textToPattern(x) {
+  // Takes input from inputbox and updates the elements HTML list based on string
+  // clears all elements
+  elementshtml.innerHTML = "";
+  elements.textContent = "";
+  drawGrid();
+}
 
 function drawGrid() {
   /* Function that sets cells in every list except the current one to 90% opacity
@@ -216,7 +235,7 @@ function drawGrid() {
 
       grid[i].style.background = colors_faded[index % colors.length];
     } else {
-      void 0;
+      grid[i].style.removeProperty("background");
     }
   }
 }
