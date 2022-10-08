@@ -183,20 +183,15 @@ function deleteElements(thisElement) {
    *
    */
 
+  thisElement.parentNode.remove();
+  elements.innerHTML = "";
+
   elementnumber = 0;
   for (const i in elementshtml.children) {
     if (elementshtml.children[i] == thisElement.parentNode) {
       elementnumber = i;
     }
   }
-  
-  // deletes the element from the list
-  thisElement.parentNode.remove();
-
-  // decrements element number
-  elementnumber--;
-  elements = elementshtml.children[elementnumber];
-  editElements(elements);
 
   drawGrid(); // function to set all other cells to 90% opacity
 }
