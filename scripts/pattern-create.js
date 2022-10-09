@@ -40,7 +40,7 @@ elements.setAttribute("onclick", "editElements(this)");
 elements.style.fontWeight = "bold";
 
 // attributes for delete button
-deletebutton.setAttribute("onclick", "deleteElements(this)");
+deletebutton.setAttribute("onclick", "deleteElement(this)");
 deletebutton.textContent = "X";
 
 // appends the delete element button
@@ -51,7 +51,7 @@ elementshtml.appendChild(elements);
 
 // On click listeners
 window.addEventListener("keydown", checkKeyPress, false);
-list.onclick = editElements(this);
+elements.onclick = editElements(this);
 
 //keeps scrollbar bottom
 var objDiv = document.getElementById("scrolling");
@@ -97,7 +97,7 @@ function nextElement() {
   elements = document.createElement("li");
   deletebutton = document.createElement("button");
   deletebutton.textContent = "X";
-  deletebutton.setAttribute("onclick", "deleteElements(this)");
+  deletebutton.setAttribute("onclick", "deleteElement(this)");
   elements.setAttribute("onclick", "editElements(this)");
   elements.style.fontWeight = "bold";
 
@@ -138,18 +138,18 @@ function updateInput() {
   sequencehtml.value = sequence;
 }
 
-function editElements(x) {
+function editElements(element) {
   /* Function triggered when clicking on elements list. Will allow you to edit that list clicked on
    *
    */
   // if the element is already selected then deselect it
 
   // if delete button is pressed then do nothing
-  if (x.textContent == "X") {
+  if (element.textContent == "X") {
     return;
   }
-  if (x.style.fontWeight == "bold") {
-    x.style.fontWeight = "normal";
+  if (element.style.fontWeight == "bold") {
+    element.style.fontWeight = "normal";
     elementnumber = -1;
   } else {
     // if the element is not selected then select it
@@ -158,7 +158,7 @@ function editElements(x) {
     elementnumber = -1;
     for (const child of elementshtml.children) {
       elementnumber++;
-      if (child == x) {
+      if (child == element) {
         break;
       }
     }
@@ -169,16 +169,16 @@ function editElements(x) {
     }
 
     // sets the current list to bold
-    x.style.fontWeight = "bold";
+    element.style.fontWeight = "bold";
 
     // sets list being edited to current
-    elements = x;
+    elements = element;
 
     drawGrid(); // function to set all other cells to 90% opacity
   }
 }
 
-function deleteElements(thisElement) {
+function deleteElement(thisElement) {
   /* Function triggered when clicking on delete button. Will delete the element clicked on
    *
    */
@@ -186,21 +186,34 @@ function deleteElements(thisElement) {
   thisElement.parentNode.remove();
   elements.innerHTML = "";
 
-  elementnumber = 0;
+  elementnumber = -1;
   for (const i in elementshtml.children) {
     if (elementshtml.children[i] == thisElement.parentNode) {
       elementnumber = i;
+      break;
     }
   }
 
   drawGrid(); // function to set all other cells to 90% opacity
 }
 
-function textToPattern(x) {
+function textToPattern() {
   // Takes input from inputbox and updates the elements HTML list based on string
   // clears all elements
+  
   elementshtml.innerHTML = "";
-  elements.textContent = "";
+  elements.innerHTML = "";
+  elementnumber = 0;
+
+
+  for (var i = 0; i < sequencehtml.length; i++) {
+    console.log(i);
+    if (sequencehtml.value[i] == ",") {
+      nextElement();
+    } else {
+      elements.appendChild(document.createTextNode(sequencehtml.value[i]));
+    }
+  }
   drawGrid();
 }
 
