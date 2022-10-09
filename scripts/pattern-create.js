@@ -75,25 +75,28 @@ function cellClicked(cell) {
   }
 
   patternToText();
+  drawGrid();
 }
 
 function checkKeyPress(key) {
   /* Function to route key presses to the correct function
-   * 
+   *
    */
 
-  // checks if enter or shift key is pressed
-  if (key.keyCode == "13" || key.keyCode == "16") {
+  // checks if enter or shift key is pressed if textbox is not being edited
+  if (
+    key.keyCode == "13" ||
+    (key.keyCode == "16" && document.activeElement != sequencehtml)
+  ) {
     nextElement();
+    patternToText();
   }
-
-  PatternToText();
 }
 
 function nextElement() {
   /* Function for creating a new element in the list
-    *
-    */
+   *
+   */
 
   // sets old list to normal font weight
   elements.style.fontWeight = "normal";
@@ -197,6 +200,7 @@ function textToPattern() {
     if (sequencehtml.value[i] == ",") {
       nextElement();
     } else {
+      // remove first space
       elements.appendChild(document.createTextNode(sequencehtml.value[i]));
     }
   }
