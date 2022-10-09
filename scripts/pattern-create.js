@@ -1,4 +1,3 @@
-// VARIABLES
 // list of colors
 const colors = [
   "rgb(255,0,0)", // red
@@ -175,9 +174,9 @@ function deleteElement(thisElement) {
     }
   }
 
+  editElements(elementshtml.children[elementnumber - 1]);
   patternToText();
   drawGrid(); // function to set all other cells to 90% opacity
-  editElements(elementshtml.children[elementnumber - 1]);
 }
 
 function textToPattern() {
@@ -186,10 +185,9 @@ function textToPattern() {
 
   elementshtml.innerHTML = "";
   elements.innerHTML = "";
-  elementnumber = 0;
-
-  for (var i = 0; i < sequencehtml.length; i++) {
-    console.log(i);
+  elementnumber = -1;
+  nextElement();
+  for (var i = 0; i < sequencehtml.value.length; i++) {
     if (sequencehtml.value[i] == ",") {
       nextElement();
     } else {
