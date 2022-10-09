@@ -75,7 +75,7 @@ function cellClicked(cell) {
     cell.style.background = colors[elementnumber];
   }
 
-  updateInput();
+  patternToText();
 }
 
 function checkKeyPress(key) {
@@ -87,6 +87,8 @@ function checkKeyPress(key) {
   if (key.keyCode == "13" || key.keyCode == "16") {
     nextElement();
   }
+
+  PatternToText();
 }
 
 function nextElement() {
@@ -116,26 +118,6 @@ function nextElement() {
   // adds coma to sequence and increments elementnumber
   elementnumber++;
   drawGrid();
-}
-
-function updateInput() {
-  /* Function for saving the pattern into AWS RDS database by creating a new pattern row
-   *
-   */
-
-  // initializing string
-  let sequence = "";
-
-  // loops through all the lists and appends them to the sequence
-  for (const child of elementshtml.children) {
-    sequence += (child.textContent + ", ").replace("X", "");
-  }
-
-  // slices last character from string
-  sequence = sequence.slice(0, -2);
-
-  // placing our string in database (not yet implemented)
-  sequencehtml.value = sequence;
 }
 
 function editElements(element) {
@@ -186,7 +168,6 @@ function deleteElement(thisElement) {
   thisElement.parentNode.remove();
   elements.innerHTML = "";
 
-  elementnumber = -1;
   for (const i in elementshtml.children) {
     if (elementshtml.children[i] == thisElement.parentNode) {
       elementnumber = i;
@@ -194,17 +175,18 @@ function deleteElement(thisElement) {
     }
   }
 
+  patternToText();
   drawGrid(); // function to set all other cells to 90% opacity
+  editElements(elementshtml.children[elementnumber - 1]);
 }
 
 function textToPattern() {
   // Takes input from inputbox and updates the elements HTML list based on string
   // clears all elements
-  
+
   elementshtml.innerHTML = "";
   elements.innerHTML = "";
   elementnumber = 0;
-
 
   for (var i = 0; i < sequencehtml.length; i++) {
     console.log(i);
@@ -217,13 +199,34 @@ function textToPattern() {
   drawGrid();
 }
 
+function patternToText() {
+  /* Function for saving the pattern into AWS RDS database by creating a new pattern row
+   *
+   */
+
+  sequencehtml.value = "";
+  // initializing string
+  let sequence = "";
+
+  // loops through all the lists and appends them to the sequence
+  for (const child of elementshtml.children) {
+    sequence += (child.textContent + ", ").replace("X", "");
+  }
+
+  // slices last character from string
+  sequence = sequence.slice(0, -2);
+
+  // placing our string in database (not yet implemented)
+  sequencehtml.value = sequence;
+}
+
 function drawGrid() {
   /* Function that sets cells in every list except the current one to 90% opacity
    *
    */
-  for (var i = 0; i < grid.length; i++) {
-    // loops through all cells in grid
 
+  // loops through all cells in grid
+  for (var i = 0; i < grid.length; i++) {
     // if the cell is at the current element set it to the current color
     if (elements.textContent.includes(grid[i].textContent + " ")) {
       // sets the color of the cell out of color list
