@@ -78,8 +78,8 @@ function cellClicked(cell) {
 }
 
 function checkKeyPress(key) {
-  /* Checks if enter key is pressed. If enter is pressed then the function increments a new list
-   * of elements and sets it to bold while setting the old list to normal.
+  /* Function to route key presses to the correct function
+   * 
    */
 
   // checks if enter or shift key is pressed
@@ -91,6 +91,10 @@ function checkKeyPress(key) {
 }
 
 function nextElement() {
+  /* Function for creating a new element in the list
+    *
+    */
+
   // sets old list to normal font weight
   elements.style.fontWeight = "normal";
 
@@ -123,12 +127,12 @@ function editElements(element) {
   /* Function triggered when clicking on elements list. Will allow you to edit that list clicked on
    *
    */
-  // if the element is already selected then deselect it
 
-  // if delete button is pressed then do nothing
+  // does not trigger with the delete button
   if (element.textContent == "X") {
     return;
   }
+
   if (element.style.fontWeight == "bold") {
     element.style.fontWeight = "normal";
     elementnumber = -1;
@@ -165,7 +169,7 @@ function deleteElement(thisElement) {
    */
 
   thisElement.parentNode.remove();
-  elements.innerHTML = "";
+  thisElement.innerHTML = "";
 
   for (const i in elementshtml.children) {
     if (elementshtml.children[i] == thisElement.parentNode) {
@@ -174,14 +178,16 @@ function deleteElement(thisElement) {
     }
   }
 
-  editElements(elementshtml.children[elementnumber - 1]);
+  elementnumber--;
+  editElements(elementshtml.children[elementnumber]);
   patternToText();
   drawGrid(); // function to set all other cells to 90% opacity
 }
 
 function textToPattern() {
-  // Takes input from inputbox and updates the elements HTML list based on string
-  // clears all elements
+  /* Function for taking the text in the sequence box and converting it to a pattern
+   *
+   */
 
   elementshtml.innerHTML = "";
   elements.innerHTML = "";
