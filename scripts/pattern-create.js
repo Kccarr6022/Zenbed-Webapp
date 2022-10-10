@@ -132,9 +132,6 @@ function editElements(element) {
    */
 
   // does not trigger with the delete button
-  if (element.textContent == "X") {
-    return;
-  }
 
   if (element.style.fontWeight == "bold") {
     element.style.fontWeight = "normal";
@@ -161,9 +158,8 @@ function editElements(element) {
 
     // sets list being edited to current
     elements = element;
-
-    drawGrid(); // function to set all other cells to 90% opacity
   }
+  drawGrid();
 }
 
 function deleteElement(thisElement) {
@@ -218,14 +214,14 @@ function patternToText() {
 
   // loops through all the lists and appends them to the sequence
   for (const child of elementshtml.children) {
-    sequence += (child.textContent + ", ").replace("X", "");
+    sequence += (child.textContent + ",").replace("X", "");
   }
 
   // slices last character from string
   sequence = sequence.slice(0, -2);
 
   // placing our string in database (not yet implemented)
-  sequencehtml.value = sequence;
+  sequencehtml.value = sequence + " ";
 }
 
 function drawGrid() {
@@ -258,3 +254,18 @@ function drawGrid() {
     }
   }
 }
+
+
+var i = 0;                  //  set your counter to 1
+
+function playPattern() {      //  create a loop function
+  i = 0;
+
+ setInterval(function () {
+      editElements(elementshtml.children[i]);
+      i++
+      if (i == elementshtml.children.length) {
+        i = 0;
+      }
+    }, 1000);
+  }
