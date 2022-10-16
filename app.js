@@ -1,29 +1,18 @@
-const http = require("http");
+const express = require("express");
+const path = require("path");
 const { readFileSync } = require("fs");
+const app = express();
 
-// get all files
-const homePage = readFileSync("./index.html");
-const homeStyles = readFileSync("./styles.css");
-const homeScript = readFileSync("./scripts/pattern-create.js");
+app.use(express.static('./public'))
 
-const server = http.createServer((req, res) => {
-  url = req.url;
-  console.log(url);
-
-  // Home
-  if (url === "/") {
-    res.writeHead(200, { "content-type": "text/html" });
-    res.write(homePage);
-    res.end();
-  } else if (url === "/styles.css") {
-    res.writeHead(200, { "content-type": "text/css" });
-    res.write(homeStyles);
-    res.end();
-  } else if (url === "/scripts/pattern-create.js") {
-    res.writeHead(200, { "content-type": "text/javascript" });
-    res.write(homeScript);
-    res.end();
-  }
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./index.html"));
 });
 
-server.listen(5000);
+app.all("*", (req, res) => {
+  res.status(404).send("resource not found");
+});
+
+app.listen(5000, () => {
+  console.log("Listining on port 5000...");
+});
