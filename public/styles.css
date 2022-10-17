@@ -105,3 +105,8 @@ nav ol {
   padding-top: 0rem;
   padding-right: 0rem;
 }
+
+#buttons > button {
+  margin-top: 1rem;
+  padding-right: 0rem;
+}

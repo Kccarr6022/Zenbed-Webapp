@@ -60,6 +60,7 @@
       <!--<img src="images/logo.png">-->
     </h1>
 
+    <form method="post">
     <div class="row">
 
         <div id="grid" class="col-lg-6" align="center">
@@ -354,18 +355,20 @@
         <div class="col-lg-6 container pb-lg-5" style="padding-top: 2.5rem;">
           <h3>Pattern Name</h3>
           <input type="text"
-                  id="creditcardccv"
-                 class="form-control col-8">
+                  id="patternname"
+                  name="patternname"
+                 class="form-control col-8"
+                 required>
           <h3 class="pt-lg-3">Elements</h3>
           <nav id="scrolling">
             <ol id="list-of-elements" style="margin-left: 5rem;">
             </ol>
           </nav>
           <div id="buttons" align="center">
+            <button type="submit" class="btn btn-lg btn-primary col-12">Save Pattern to Account</button>
             <button type="button" class="btn btn-lg btn-primary col-12"
-            onclick="textToPattern()">Save Pattern to Account</button>
-            <button type="button" class="btn btn-lg btn-primary col-12"
-            onclick="playPattern()" style="margin-top: 1rem;">Play Pattern</button>
+            onclick="playPattern()">Play Pattern</button>
+            <input type="range" min="1" max="10">
           </div>
         </div>
     </div>
@@ -373,10 +376,11 @@
       <textarea id="sequence"
                 name="sequence"
                 type="text"
-                id="creditcardccv"
                 placeholder="sequence"
                 rows="5"
                 class="form-control col-12"></textarea>
+    </div>
+  </form>
     <script
         src="pattern-create.js">
     </script>

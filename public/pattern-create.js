@@ -71,6 +71,7 @@ function cellClicked(cell) {
   } else {
     // appends cell to the current element
     elements.appendChild(document.createTextNode(cell.textContent + " "));
+    console.log(elementnumber);
     cell.style.background = colors[elementnumber];
   }
 
@@ -134,8 +135,9 @@ function editElements(element) {
   // does not trigger with the delete button
 
   if (element.style.fontWeight == "bold") {
+    // deselects the element
     element.style.fontWeight = "normal";
-    elementnumber = -1;
+    
   } else {
     // if the element is not selected then select it
 
@@ -176,7 +178,6 @@ function deleteElement(thisElement) {
       break;
     }
   }
-
   elementnumber--;
   editElements(elementshtml.children[elementnumber]);
   patternToText();
@@ -255,17 +256,15 @@ function drawGrid() {
   }
 }
 
+function playPattern() {
+  //  create a loop function
+  var i = 0;
 
-var i = 0;                  //  set your counter to 1
-
-function playPattern() {      //  create a loop function
-  i = 0;
-
- setInterval(function () {
-      editElements(elementshtml.children[i]);
-      i++
-      if (i == elementshtml.children.length) {
-        i = 0;
-      }
-    }, 1000);
-  }
+  setInterval(function () {
+    editElements(elementshtml.children[i]);
+    i++;
+    if (i == elementshtml.children.length) {
+      i = 0;
+    }
+  }, 1000);
+}
