@@ -137,7 +137,6 @@ function editElements(element) {
   if (element.style.fontWeight == "bold") {
     // deselects the element
     element.style.fontWeight = "normal";
-    
   } else {
     // if the element is not selected then select it
 
@@ -256,15 +255,33 @@ function drawGrid() {
   }
 }
 
+var playing = false;
 function playPattern() {
-  //  create a loop function
-  var i = 0;
+  /* Function to play the pattern
+   *
+   */
+  if (!playing) {
+    runPattern();
+  }
+  playing = !playing;
+}
 
-  setInterval(function () {
+function runPattern() {
+  var i = 0;
+  let playingpattern = setInterval(() => {
+    if (!playing) {
+      stopPattern(playingpattern);
+      editElements(elementshtml.children[0]);
+      return;
+    }
     editElements(elementshtml.children[i]);
     i++;
     if (i == elementshtml.children.length) {
       i = 0;
     }
   }, 1000);
+}
+
+function stopPattern(pattern) {
+  clearInterval(pattern);
 }
