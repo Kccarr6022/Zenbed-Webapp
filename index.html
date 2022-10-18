@@ -60,7 +60,7 @@
       <!--<img src="images/logo.png">-->
     </h1>
 
-    <form method="post">
+    <form method="POST">
     <div class="row">
 
         <div id="grid" class="col-lg-6" align="center">
@@ -368,7 +368,8 @@
             <button type="submit" class="btn btn-lg btn-primary col-12">Save Pattern to Account</button>
             <button type="button" class="btn btn-lg btn-primary col-12"
             onclick="playPattern()">Play Pattern</button>
-            <input type="range" min="1" max="10">
+            <label for ="patternspeed">Speed: </label>
+            <input type="range" min="1" max="10" id="patternspeed">
           </div>
         </div>
     </div>
