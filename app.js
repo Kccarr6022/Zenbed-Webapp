@@ -57,16 +57,19 @@ app.get("/api/patterns", (req, res) => {
       return console.error(err.message);
     }
 
+    // filter the rows based on the search query
     if (search) {
       rows = rows.filter((row) => {
         return row.name.toLowerCase().startsWith(search.toLowerCase());
       });
     }
 
+    // limit the rows based on the limit query
     if (limit) {
       rows = rows.slice(0, limit);
     }
 
+    // send the rows to the client
     if (rows.length === 0) {
       res.send("No resource found");
     } else {
@@ -76,7 +79,7 @@ app.get("/api/patterns", (req, res) => {
 });
 
 app.listen(5000, () => {
-  console.log("Listining on port 5000...");
+  console.log("Server is listining on port 5000...");
 });
 
 const cleanup = (event) => {
