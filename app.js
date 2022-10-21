@@ -56,40 +56,23 @@ app.get("/api/patterns", (req, res) => {
       res.send("No resource found");
       return console.error(err.message);
     }
+
     if (search) {
-      const filter = rows.filter((row) => {
+      rows = rows.filter((row) => {
         return row.name.toLowerCase().startsWith(search.toLowerCase());
       });
     }
+
     if (limit) {
-      const rows = rows.slice(0, limit);
+      rows = rows.slice(0, limit);
     }
-    return res.status(200).json(rows);
+
+    if (rows.length === 0) {
+      res.send("No resource found");
+    } else {
+      res.status(200).json(rows);
+    }
   });
-});
-
-app.get("/api/patterns", (req, res) => {
-  /* function for when the user requests a specific pattern
-   *
-   */
-
-  let sortedProducts = [...products];
-
-  if (search) {
-    sortedProducts = sortedProducts.filter((product) => {
-      return product.name.startsWith(search);
-    });
-  }
-
-  if (limit) {
-    sortedProducts = sortedProducts.slice(0, Number(limit));
-  }
-
-  if (sortedProducts < 1) {
-    res.status(200).json({ success: true, data: [] });
-  }
-
-  res.status(200).json(sortedProducts);
 });
 
 app.listen(5000, () => {
