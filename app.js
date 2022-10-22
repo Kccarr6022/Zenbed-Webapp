@@ -71,7 +71,7 @@ app.get("/api/patterns", (req, res) => {
 
     // send the rows to the client
     if (rows.length === 0) {
-      res.send("No resource found");
+      res.status(401).send("No resource found");
     } else {
       res.status(200).json(rows);
     }
