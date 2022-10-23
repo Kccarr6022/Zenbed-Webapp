@@ -35,20 +35,22 @@ app.post("/", (req, res) => {
   /* function for when the user submits the form
    *
    */
+  var id;
   try {
     const { patternname, sequence } = req.body;
-    const { id } = db.all("SELECT * from patterns", [], (err, rows) => {
+    db.all("SELECT * from patterns", [], (err, rows) => {
       if (err) return console.error(err.message);
-      let id = rows.length + 1;
-    });
-    const sql = `INSERT INTO patterns (id, name, sequence)
-                  VALUES(?, ?, ?)`;
-    db.run(sql, [id, patternname, sequence], (err) => {
-      if (err) return console.error(err.message);
-      console.log(`Pattern ${patternname} has been added to patterns.`);
-    });
 
-    return res.status(200).sendFile(path.resolve(__dirname, "./index.html"));
+      const sql = `INSERT INTO patterns (id, name, sequence)
+                  VALUES(?, ?, ?)`;
+      db.run(sql, [rows.length, patternname, sequence], (err) => {
+        if (err) return console.error(err.message);
+        console.log(`Pattern ${patternname} has been added to patterns.`);
+        return res
+          .status(200)
+          .sendFile(path.resolve(__dirname, "./index.html"));
+      });
+    });
   } catch (err) {
     console.log(err);
   }

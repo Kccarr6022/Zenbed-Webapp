@@ -1,17 +1,6 @@
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database(__dirname + "/../database.db");
 
-const getPatterns = (req, res) => {
-  /* function for when the user requests the patterns
-   *
-   */
-  console.log("getPatterns");
-  db.all("SELECT * from patterns", (err, rows) => {
-    if (err) return console.error(err.message);
-    res.status(200).json(rows);
-  });
-};
-
 const queryPattern = (req, res) => {
   /* function for when the user requests the patterns
    *
@@ -45,4 +34,4 @@ const queryPattern = (req, res) => {
   });
 };
 
-module.exports = { getPatterns, queryPattern };
+module.exports = { queryPattern };
